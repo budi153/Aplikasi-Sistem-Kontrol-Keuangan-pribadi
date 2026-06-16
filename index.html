@@ -9,13 +9,12 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
             padding: 30px 20px;
-            /* Latar belakang gradasi elegan agar lebih menarik */
             background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
             min-height: 100vh;
             color: #333;
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             margin: auto;
             background: rgba(255, 255, 255, 0.95);
             padding: 30px;
@@ -27,12 +26,12 @@
         .developer-credit { text-align: center; color: #475569; margin-top: 0; margin-bottom: 25px; font-size: 13px; font-weight: 600; }
         h3 { color: #1e3a8a; margin-top: 30px; border-bottom: 2px solid #bdc3c7; padding-bottom: 8px; font-weight: 600; font-size: 18px; }
         
-        /* Input Alokasi Modal */
+        /* Input Alokasi Modal & Target */
         .modal-section {
             background-color: #f8fafc;
             padding: 15px 20px;
             border-radius: 8px;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             border-left: 5px solid #3498db;
             display: flex;
             align-items: center;
@@ -47,6 +46,22 @@
             font-size: 16px;
             width: 45%;
             font-weight: 600;
+        }
+
+        .target-section {
+            background-color: #f0fdf4;
+            padding: 12px 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 5px solid #16a34a;
+            display: flex;
+            gap: 10px;
+        }
+        .target-section input {
+            padding: 8px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 14px;
         }
 
         /* Ringkasan Saldo Utama */
@@ -67,6 +82,7 @@
         .bg-modal { background-color: #7c3aed; }
         .bg-pengeluaran { background-color: #ea580c; }
         .bg-saldo { background-color: #16a34a; }
+        .bg-danger-saldo { background-color: #dc2626 !important; }
 
         /* Panel Analisis Pengeluaran Ekstrem */
         .analisis-box {
@@ -89,13 +105,18 @@
         .analisis-label-kecil { color: #16a34a; font-weight: 600; text-transform: uppercase; font-size: 11px; letter-spacing: 0.5px; }
         .analisis-val { font-size: 18px; font-weight: 700; margin-top: 4px; }
 
-        /* Panel Rekomendasi Finansial */
+        /* Panel Perencanaan & Box Defisit */
         .rencana-box {
             background-color: #f8fafc;
             border: 1px solid #e2e8f0;
             padding: 18px;
             border-radius: 8px;
             margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        .rencana-box.box-tekor-aktif {
+            border: 1px solid #fca5a5;
+            background-color: #fff5f5;
         }
         .rencana-title { font-weight: 600; color: #1e3a8a; font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
         .rencana-grid {
@@ -112,14 +133,47 @@
             text-align: center;
         }
         .rencana-val { font-size: 18px; font-weight: 700; color: #2c3e50; margin-top: 5px; }
-        .kesimpulan-teks { font-size: 13px; color: #475569; margin-top: 12px; background: #f0f7ff; padding: 10px; border-radius: 4px; border-left: 3px solid #0284c7; line-height: 1.5; }
+        .kesimpulan-teks { font-size: 13px; color: #475569; margin-top: 12px; background: #f0f7ff; padding: 12px; border-radius: 6px; border-left: 4px solid #0284c7; line-height: 1.6; }
+        .kesimpulan-teks.teks-tekor-aktif {
+            background: #fef2f2;
+            border-left: 4px solid #ef4444;
+            color: #991b1b;
+        }
+        
+        /* Progress Bar */
+        .progress-container {
+            background-color: #e2e8f0;
+            border-radius: 20px;
+            margin-top: 15px;
+            position: relative;
+            height: 20px;
+            width: 100%;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background-color: #10b981;
+            height: 100%;
+            width: 0%;
+            transition: width 0.4s ease-in-out, background-color 0.4s;
+        }
+        .progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 0;
+            left: 0;
+            font-size: 11px;
+            font-weight: 700;
+            color: #1e293b;
+            line-height: 20px;
+        }
 
         /* Form Entri Data */
         form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
             gap: 10px;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             background: #f1f5f9;
             padding: 18px;
             border-radius: 8px;
@@ -139,17 +193,52 @@
         }
         form button:hover { background-color: #0f172a; }
 
+        /* Panel Filter Kontrol Atas Buku Catatan */
+        .filter-panel-buku {
+            background-color: #f8fafc;
+            border: 1px solid #e2e8f0;
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        .date-filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #475569;
+        }
+        .date-filter-group input {
+            padding: 6px 10px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+        .search-container input {
+            padding: 8px 12px;
+            width: 230px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 13px;
+        }
+
         /* Navigasi Tab Buku Catatan */
         .tabs-buku {
             display: flex;
-            flex-wrap: wrap;
             gap: 2px;
-            margin-top: 15px;
+            margin-top: 10px;
             margin-bottom: 0;
             border-bottom: 2px solid #e2e8f0;
+            overflow-x: auto;
         }
         .btn-buku {
-            padding: 10px 14px;
+            padding: 10px 10px;
             background-color: #f1f5f9;
             border: 1px solid #e2e8f0;
             border-bottom: none;
@@ -158,6 +247,9 @@
             font-weight: 600;
             color: #64748b;
             font-size: 12px;
+            white-space: nowrap;
+            flex: 1;
+            text-align: center;
         }
         .btn-buku:hover { background-color: #e2e8f0; color: #334155; }
         .btn-buku.aktif {
@@ -169,6 +261,11 @@
             background-color: #16a34a;
             color: white;
             border-color: #16a34a;
+        }
+        .btn-buku.tab-brankas-aktif {
+            background-color: #0d9488;
+            color: white;
+            border-color: #0d9488;
         }
 
         /* Tabel Data Sistem */
@@ -186,6 +283,7 @@
         th { background-color: #f8fafc; color: #475569; font-weight: 600; }
         .text-pemasukan { color: #16a34a; font-weight: 600; }
         .text-pengeluaran { color: #dc2626; font-weight: 600; }
+        .text-brankas-simpanan { color: #0d9488; font-weight: 600; }
         
         .btn-hapus {
             background-color: #ef4444;
@@ -201,7 +299,34 @@
         .table-kategori th { background-color: #334155; color: white; }
         .table-kategori tr:nth-child(even) { background-color: #f8fafc; }
 
-        /* Tombol Hapus/Reset Siklus Bulanan */
+        /* Progress Bar Kategori */
+        .mini-progress-bg {
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            height: 6px;
+            width: 100%;
+            margin-top: 4px;
+            overflow: hidden;
+        }
+        .mini-progress-fill {
+            background-color: #3b82f6;
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        /* Penanda khusus jika anggaran kritis */
+        .mini-progress-fill.overlimit {
+            background-color: #dc2626 !important;
+        }
+
+        .catatan-analisis-bawah {
+            font-size: 12px;
+            margin-top: 6px;
+            font-weight: 500;
+            color: #475569;
+            line-height: 1.4;
+        }
+
         .control-panel-bawah {
             display: flex;
             justify-content: flex-end;
@@ -230,11 +355,25 @@
     <h4>Modul Manajemen Anggaran dan Analisis Finansial</h4>
     <div class="developer-credit">Developer: I GEDE BUDI</div>
 
+    <!-- Input Alokasi Modal -->
     <div class="modal-section">
         <label for="num-modal-awal">UANG AWAL:</label>
-        <input type="number" id="num-modal-awal" placeholder="Masukkan Nominal Kebijakan Modal">
+        <input type="text" id="num-modal-awal" placeholder="Masukkan Nominal Kebijakan Modal" oninput="formatInputRupiah(this)">
     </div>
 
+    <!-- Savings Goal Tracker Section -->
+    <div class="target-section">
+        <div style="flex:1; display:flex; align-items:center; gap:8px;">
+            <label style="font-size:12px; font-weight:700; color:#16a34a;">🎯 TARGET BELI BARANG:</label>
+            <input type="text" id="txt-nama-target" placeholder="Nama Barang (Misal: Laptop)" style="flex:1;" oninput="simpanTargetSiklus()">
+        </div>
+        <div style="flex:1; display:flex; align-items:center; gap:8px;">
+            <label style="font-size:12px; font-weight:700; color:#16a34a;">HARGA (Rp):</label>
+            <input type="text" id="num-harga-target" placeholder="Harga Barang" style="width:60%; font-weight:600;" oninput="formatInputRupiah(this); simpanTargetSiklus()">
+        </div>
+    </div>
+
+    <!-- Ringkasan Tampilan Saldo -->
     <div class="summary-box">
         <div class="card bg-modal">
             <div>Uang Awal</div>
@@ -244,12 +383,13 @@
             <div>Total Pengeluaran</div>
             <div id="total-pengeluaran">Rp 0</div>
         </div>
-        <div class="card bg-saldo">
-            <div>Sisa Saldo Akhir</div>
+        <div id="card-saldo-utama" class="card bg-saldo">
+            <div id="lbl-status-saldo">Sisa Saldo Akhir</div>
             <div id="sisa-saldo">Rp 0</div>
         </div>
     </div>
 
+    <!-- Panel Analisis Pengeluaran Ekstrem -->
     <div class="analisis-box">
         <div class="card-analisis border-besar">
             <div class="analisis-label-besar">[▲] Pengeluaran Terbesar</div>
@@ -263,21 +403,30 @@
         </div>
     </div>
 
-    <div class="rencana-box">
-        <div class="rencana-title">ℹ Analisis Proyeksi Tabungan & Dana Darurat (Siklus 30 Hari)</div>
+    <!-- PANEL ANALISIS REKOMENDASI TABUNGAN / DETEKTOR KEBOCORAN KAS -->
+    <div id="panel-rencana-induk" class="rencana-box">
+        <div id="title-rencana-induk" class="rencana-title">ℹ Analisis Proyeksi Tabungan & Dana Darurat (Siklus 30 Hari)</div>
         <div class="rencana-grid">
             <div class="rencana-card" style="border-top: 4px solid #ea580c;">
-                <div style="color: #c2410c; font-weight: 600; font-size: 12px; text-transform: uppercase;">Dana Darurat Ideal (15% Gaji)</div>
+                <div id="lbl-rencana-darurat" style="color: #c2410c; font-weight: 600; font-size: 12px; text-transform: uppercase;">Dana Darurat Ideal (15% Gaji)</div>
                 <div id="txt-rencana-darurat" class="rencana-val">Rp 0</div>
             </div>
             <div class="rencana-card" style="border-top: 4px solid #059669;">
-                <div style="color: #047857; font-weight: 600; font-size: 12px; text-transform: uppercase;">Tabungan Realistis (10% Gaji)</div>
+                <div id="lbl-rencana-tabungan" style="color: #047857; font-weight: 600; font-size: 12px; text-transform: uppercase;">Tabungan Realistis (10% Gaji)</div>
                 <div id="txt-rencana-tabungan" class="rencana-val">Rp 0</div>
             </div>
         </div>
+        
+        <!-- Progress Bar Status -->
+        <div class="progress-container">
+            <div id="kas-progress-bar" class="progress-bar"></div>
+            <div id="kas-progress-text" class="progress-text">Status Kesehatan Kas: 0%</div>
+        </div>
+
         <div id="txt-kesimpulan-analisis" class="kesimpulan-teks">Menunggu data entri transaksi untuk memproses kesimpulan analisis finansial harian.</div>
     </div>
 
+    <!-- Form Input Transaksi -->
     <form id="finance-form">
         <input type="date" id="txt-tanggal" required>
         <select id="sel-kategori" required>
@@ -288,13 +437,33 @@
             <option value="Keperluan Motor">Keperluan Motor</option>
             <option value="Kebutuhan Lainnya">Kebutuhan Lainnya</option>
             <option value="Pemasukan Tambahan">Pemasukan Tambahan</option>
+            <option value="Dana Darurat">🔒 Dana Darurat (Simpanan)</option>
+            <option value="Tabungan Impian">🔒 Tabungan Impian (Simpanan)</option>
         </select>
         <input type="text" id="txt-keterangan" placeholder="Keterangan Transaksi" required>
-        <input type="number" id="num-jumlah" placeholder="Nominal (Rp)" required>
+        <input type="text" id="num-jumlah" placeholder="Nominal (Rp)" oninput="formatInputRupiah(this)" required>
         <button type="submit">Tambah Data</button>
     </form>
 
+    <!-- PILIHAN BUKU CATATAN + PANEL FILTER TANGGAL TERPADU -->
     <h3>Buku Catatan</h3>
+    
+    <div class="filter-panel-buku">
+        <!-- FITUR BARU: Filter Berdasarkan Rentang Tanggal -->
+        <div class="date-filter-group">
+            <label>📅 Rentang:</label>
+            <input type="date" id="filter-date-mulai" onchange="jalankanFilterGanda()">
+            <span>s/d</span>
+            <input type="date" id="filter-date-akhir" onchange="jalankanFilterGanda()">
+            <button class="btn-hapus" style="background-color:#64748b; padding: 5px 10px;" onclick="clearFilterTanggal()">Reset</button>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" id="txt-cari" placeholder="🔍 Cari keterangan transaksi..." onkeyup="jalankanFilterGanda()">
+        </div>
+    </div>
+
+    <!-- Tombol Tab Buku Catatan Sejajar -->
     <div class="tabs-buku">
         <button class="btn-buku aktif" onclick="gantiBuku('Semua', this)">Semua Riwayat</button>
         <button class="btn-buku" onclick="gantiBuku('Makanan', this)">Makanan</button>
@@ -302,9 +471,12 @@
         <button class="btn-buku" onclick="gantiBuku('Keperluan Kampus', this)">Keperluan Kampus</button>
         <button class="btn-buku" onclick="gantiBuku('Keperluan Motor', this)">Keperluan Motor</button>
         <button class="btn-buku" onclick="gantiBuku('Kebutuhan Lainnya', this)">Kebutuhan Lainnya</button>
-        <button id="tab-pemasukan" class="btn-buku" onclick="gantiBuku('Pemasukan Tambahan', this)" style="border-bottom: 1px solid #e2e8f0;">Pemasukan Tambahan</button>
+        <button id="tab-pemasukan" class="btn-buku" onclick="gantiBuku('Pemasukan Tambahan', this)">Pemasukan Tambahan</button>
+        <button id="tab-darurat-new" class="btn-buku" onclick="gantiBuku('Dana Darurat', this)">Dana Darurat</button>
+        <button id="tab-tabungan-new" class="btn-buku" onclick="gantiBuku('Tabungan Impian', this)">Tabungan Impian</button>
     </div>
 
+    <!-- Tabel Tampilan Riwayat Transaksi -->
     <table style="margin-bottom: 35px;">
         <thead>
             <tr>
@@ -316,41 +488,75 @@
             </tr>
         </thead>
         <tbody id="table-body">
-            </tbody>
+            <!-- Data terproses secara otomatis -->
+        </tbody>
     </table>
 
-    <h3>Ringkasan Akumulasi Distribusi Dana</h3>
+    <!-- TABEL RINGKASAN TOTAL KATEGORI DENGAN BUDGET WARNING -->
+    <h3>Ringkasan Akumulasi Distribusi Dana & Warning Sektor</h3>
     <table class="table-kategori">
         <thead>
             <tr>
-                <th>Kategori Pos Pengeluaran</th>
-                <th>Total Terpakai (Rp)</th>
+                <th>Kategori Pos Pengeluaran / Alokasi Mandiri</th>
+                <th>Total Terpakai / Disimpan (Rp)</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td><b>Makanan</b></td>
+                <td>
+                    <b>Makanan</b> <span id="alert-makanan" class="text-pengeluaran" style="font-size:11px;"></span>
+                    <div class="mini-progress-bg"><div id="bar-makanan" class="mini-progress-fill"></div></div>
+                </td>
                 <td id="cat-makanan" class="text-pengeluaran">Rp 0</td>
             </tr>
             <tr>
-                <td><b>Minuman</b></td>
+                <td>
+                    <b>Minuman</b> <span id="alert-minuman" class="text-pengeluaran" style="font-size:11px;"></span>
+                    <div class="mini-progress-bg"><div id="bar-minuman" class="mini-progress-fill"></div></div>
+                </td>
                 <td id="cat-minuman" class="text-pengeluaran">Rp 0</td>
             </tr>
             <tr>
-                <td><b>Keperluan Kampus</b></td>
-                <td id="cat-kampus" class="text-pengeluaran">Rp 0</td>
+                <td>
+                    <b>Keperluan Kampus</b> <span id="alert-kampus" class="text-pengeluaran" style="font-size:11px;"></span>
+                    <div class="mini-progress-bg"><div id="bar-kampus" class="mini-progress-fill"></div></div>
+                </td>
+                <td id="cat-campus" class="text-pengeluaran">Rp 0</td>
             </tr>
             <tr>
-                <td><b>Keperluan Motor</b></td>
+                <td>
+                    <b>Keperluan Motor</b> <span id="alert-motor" class="text-pengeluaran" style="font-size:11px;"></span>
+                    <div class="mini-progress-bg"><div id="bar-motor" class="mini-progress-fill"></div></div>
+                </td>
                 <td id="cat-motor" class="text-pengeluaran">Rp 0</td>
             </tr>
             <tr>
-                <td><b>Kebutuhan Lainnya</b></td>
+                <td>
+                    <b>Kebutuhan Lainnya</b> <span id="alert-lainnya" class="text-pengeluaran" style="font-size:11px;"></span>
+                    <div class="mini-progress-bg"><div id="bar-lainnya" class="mini-progress-fill"></div></div>
+                </td>
                 <td id="cat-lainnya" class="text-pengeluaran">Rp 0</td>
+            </tr>
+            
+            <tr style="background-color: #f0fdfa;">
+                <td>
+                    <b>🔒 Total Celengan Dana Darurat Terkumpul</b>
+                    <div id="lbl-analisis-darurat-bawah" class="catatan-analisis-bawah">Menunggu data modal...</div>
+                </td>
+                <td id="cat-dana-darurat" class="text-brankas-simpanan" style="font-size: 16px; font-weight: 700;">Rp 0</td>
+            </tr>
+            <tr style="background-color: #f0fdfa;">
+                <td>
+                    <b>🔒 Total Celengan Tabungan Impian Terkumpul</b>
+                    <!-- FITUR BARU: Ditambahkan ETA Prediktor Waktu otomatis di dalam elemen ini -->
+                    <div id="lbl-analisis-tabungan-bawah" class="catatan-analisis-bawah">Menunggu data target barang...</div>
+                </td>
+                <td id="cat-tabungan-impian" class="text-brankas-simpanan" style="font-size: 16px; font-weight: 700;">Rp 0</td>
             </tr>
         </tbody>
     </table>
 
+    <!-- CONTROL PANEL PANEL RESET SIKLUS -->
     <div class="control-panel-bawah">
         <button class="btn-action-clear" onclick="resetSiklusBulanan()">Mulai Siklus Baru (Reset Data)</button>
     </div>
@@ -366,9 +572,39 @@
     const inputModalAwal = document.getElementById('num-modal-awal');
 
     if(modalAwal > 0) {
-        inputModalAwal.value = modalAwal;
+        inputModalAwal.value = modalAwal.toLocaleString('id-ID');
     }
+    
     document.getElementById('txt-tanggal').valueAsDate = new Date();
+
+    document.getElementById('txt-nama-target').value = localStorage.getItem('namaTarget') || '';
+    let hargaTargetSaves = parseFloat(localStorage.getItem('hargaTarget')) || 0;
+    if(hargaTargetSaves > 0){
+        document.getElementById('num-harga-target').value = hargaTargetSaves.toLocaleString('id-ID');
+    }
+
+    function formatInputRupiah(input) {
+        let nilaiClean = input.value.replace(/[^,\d]/g, '').toString();
+        if (nilaiClean === "") {
+            input.value = "";
+            return;
+        }
+        let basisAngka = parseInt(nilaiClean, 10);
+        input.value = basisAngka.toLocaleString('id-ID');
+    }
+
+    function dapatkanAngkaMurni(stringRupiah) {
+        if (!stringRupiah) return 0;
+        return parseFloat(stringRupiah.replace(/\./g, '')) || 0;
+    }
+
+    function simpanTargetSiklus() {
+        const nama = document.getElementById('txt-nama-target').value;
+        const harga = dapatkanAngkaMurni(document.getElementById('num-harga-target').value);
+        localStorage.setItem('namaTarget', nama);
+        localStorage.setItem('hargaTarget', harga);
+        hitungKeuangan();
+    }
 
     function formatTanggalIndo(tanggalStr) {
         if (!tanggalStr) return '-';
@@ -389,12 +625,28 @@
         let totalKampus = 0;
         let totalMotor = 0;
         let totalLainnya = 0;
+        
+        let totalDanaDarurat = 0;
+        let totalTabunganImpian = 0;
 
         let listPengeluaran = [];
+
+        // Hitung total tabungan per bulan untuk ETA prediktor
+        let pencatatBulanTabungan = {};
 
         dataTransaksi.forEach(transaksi => {
             if (transaksi.kategori === 'Pemasukan Tambahan') {
                 totalPemasukanLain += transaksi.jumlah;
+            } else if (transaksi.kategori === 'Dana Darurat') {
+                totalDanaDarurat += transaksi.jumlah;
+            } else if (transaksi.kategori === 'Tabungan Impian') {
+                totalTabunganImpian += transaksi.jumlah;
+                
+                // Ambil kode tahun-bulan (misal: 2026-06)
+                if (transaksi.tanggal) {
+                    let keyBulan = transaksi.tanggal.substring(0, 7);
+                    pencatatBulanTabungan[keyBulan] = (pencatatBulanTabungan[keyBulan] || 0) + transaksi.jumlah;
+                }
             } else {
                 totalPengeluaran += transaksi.jumlah;
                 listPengeluaran.push(transaksi);
@@ -407,26 +659,72 @@
             }
         });
 
-        let sisaSaldoAkhir = modalAwal + totalPemasukanLain - totalPengeluaran;
+        let sisaSaldoAkhir = modalAwal + totalPemasukanLain - totalPengeluaran - totalDanaDarurat - totalTabunganImpian;
 
         document.getElementById('lbl-modal-awal').innerText = 'Rp ' + modalAwal.toLocaleString('id-ID');
         document.getElementById('total-pengeluaran').innerText = 'Rp ' + totalPengeluaran.toLocaleString('id-ID');
-        document.getElementById('sisa-saldo').innerText = 'Rp ' + sisaSaldoAkhir.toLocaleString('id-ID');
+        
+        const cardSaldo = document.getElementById('card-saldo-utama');
+        const lblStatusSaldo = document.getElementById('lbl-status-saldo');
+        
+        if (sisaSaldoAkhir < 0) {
+            cardSaldo.className = "card bg-danger-saldo";
+            lblStatusSaldo.innerText = "Total Defisit / Minus";
+            document.getElementById('sisa-saldo').innerText = '-Rp ' + Math.abs(sisaSaldoAkhir).toLocaleString('id-ID');
+        } else {
+            cardSaldo.className = "card bg-saldo";
+            lblStatusSaldo.innerText = "Sisa Saldo Akhir";
+            document.getElementById('sisa-saldo').innerText = 'Rp ' + sisaSaldoAkhir.toLocaleString('id-ID');
+        }
 
         document.getElementById('cat-makanan').innerText = 'Rp ' + totalMakanan.toLocaleString('id-ID');
         document.getElementById('cat-minuman').innerText = 'Rp ' + totalMinuman.toLocaleString('id-ID');
-        document.getElementById('cat-kampus').innerText = 'Rp ' + totalKampus.toLocaleString('id-ID');
+        document.getElementById('cat-campus').innerText = 'Rp ' + totalKampus.toLocaleString('id-ID');
         document.getElementById('cat-motor').innerText = 'Rp ' + totalMotor.toLocaleString('id-ID');
         document.getElementById('cat-lainnya').innerText = 'Rp ' + totalLainnya.toLocaleString('id-ID');
+        
+        document.getElementById('cat-dana-darurat').innerText = 'Rp ' + totalDanaDarurat.toLocaleString('id-ID');
+        document.getElementById('cat-tabungan-impian').innerText = 'Rp ' + totalTabunganImpian.toLocaleString('id-ID');
 
+        // FITUR BARU: Aturan Warning Ambang Batas Kritis Anggaran (Sistem dinamis: Maksimal 30% dari Modal Awal untuk tiap pos jajan)
+        let batasMaksimalSektor = modalAwal > 0 ? (0.30 * modalAwal) : 0;
+
+        function konfigurasiBarWarning(totalKategori, elemenBar, elemenTeks) {
+            if (modalAwal > 0) {
+                let rasioKategori = (totalKategori / modalAwal) * 100;
+                elemenBar.style.width = Math.min(rasioKategori, 100) + "%";
+                
+                if (totalKategori >= batasMaksimalSektor) {
+                    elemenBar.className = "mini-progress-fill overlimit";
+                    elemenTeks.innerText = "⚠️ KRITIS (Sektor Boros >30%)";
+                } else {
+                    elemenBar.className = "mini-progress-fill";
+                    elemenTeks.innerText = "";
+                }
+            } else {
+                elemenBar.style.width = "0%";
+                elemenTeks.innerText = "";
+            }
+        }
+
+        konfigurasiBarWarning(totalMakanan, document.getElementById('bar-makanan'), document.getElementById('alert-makanan'));
+        konfigurasiBarWarning(totalMinuman, document.getElementById('bar-minuman'), document.getElementById('alert-minuman'));
+        konfigurasiBarWarning(totalKampus, document.getElementById('bar-kampus'), document.getElementById('alert-kampus'));
+        konfigurasiBarWarning(totalMotor, document.getElementById('bar-motor'), document.getElementById('alert-motor'));
+        konfigurasiBarWarning(totalLainnya, document.getElementById('bar-lainnya'), document.getElementById('alert-lainnya'));
+
+        let namaTransaksiTerbesar = "-";
         let kategoriTerbesarNama = "-";
+        let nominalTerbesar = 0;
 
         if (listPengeluaran.length > 0) {
             listPengeluaran.sort((a, b) => a.jumlah - b.jumlah);
             let pengeluaranTerkecil = listPengeluaran[0];
             let pengeluaranTerbesar = listPengeluaran[listPengeluaran.length - 1];
 
+            namaTransaksiTerbesar = pengeluaranTerbesar.keterangan;
             kategoriTerbesarNama = pengeluaranTerbesar.kategori;
+            nominalTerbesar = pengeluaranTerbesar.jumlah;
 
             document.getElementById('txt-besar-nama').innerText = `${pengeluaranTerbesar.keterangan} (${pengeluaranTerbesar.kategori})`;
             document.getElementById('txt-besar-val').innerText = 'Rp ' + pengeluaranTerbesar.jumlah.toLocaleString('id-ID');
@@ -440,37 +738,168 @@
             document.getElementById('txt-kecil-val').innerText = 'Rp 0';
         }
 
-        if (modalAwal > 0) {
-            let alokasiDarurat = 0.15 * modalAwal;  
-            let alokasiTabungan = 0.10 * modalAwal; 
-            let totalWajibDisimpan = alokasiDarurat + alokasiTabungan;
+        const pBar = document.getElementById('kas-progress-bar');
+        const pText = document.getElementById('kas-progress-text');
+        const panelRencana = document.getElementById('panel-rencana-induk');
+        const titleRencana = document.getElementById('title-rencana-induk');
+        const kesimpulanBox = document.getElementById('txt-kesimpulan-analisis');
 
-            document.getElementById('txt-rencana-darurat').innerText = 'Rp ' + Math.round(alokasiDarurat).toLocaleString('id-ID');
-            document.getElementById('txt-rencana-tabungan').innerText = 'Rp ' + Math.round(alokasiTabungan).toLocaleString('id-ID');
+        const lblDarurat = document.getElementById('lbl-rencana-darurat');
+        const lblTabungan = document.getElementById('lbl-rencana-tabungan');
+        const valDarurat = document.getElementById('txt-rencana-darurat');
+        const valTabungan = document.getElementById('txt-rencana-tabungan');
+
+        const txtNoteDaruratBawah = document.getElementById('lbl-analisis-darurat-bawah');
+        const txtNoteTabunganBawah = document.getElementById('lbl-analisis-tabungan-bawah');
+
+        if (modalAwal > 0) {
+            let alokasiDaruratIdeal = 0.15 * modalAwal;  
+            let alokasiTabunganIdeal = 0.10 * modalAwal; 
+            let totalWajibDisimpan = alokasiDaruratIdeal + alokasiTabunganIdeal;
+
+            const namaTarget = document.getElementById('txt-nama-target').value;
+            const hargaTarget = dapatkanAngkaMurni(document.getElementById('num-harga-target').value);
             
-            if (sisaSaldoAkhir >= totalWajibDisimpan) {
-                document.getElementById('txt-kesimpulan-analisis').innerText = `Analisis Hasil: Untuk mencapai total dana darurat sebesar 3 kali lipat pengeluaran, Anda secara umum perlu menyisihkan sekitar 10% hingga 20% (Sistem menetapkan angka ideal: 15%). Sisa saldo terkini Anda sangat mencukupi! Amankan Rp ${Math.round(alokasiDarurat).toLocaleString('id-ID')} ke akun Dana Darurat dan Rp ${Math.round(alokasiTabungan).toLocaleString('id-ID')} ke akun Tabungan Anda bulan ini. Aktivitas pengeluaran tertinggi berada pada aktivitas "${kategoriTerbesarNama}".`;
-            } else if (sisaSaldoAkhir > 0 && sisaSaldoAkhir < totalWajibDisimpan) {
-                document.getElementById('txt-kesimpulan-analisis').innerText = `Analisis Hasil: Sisa uang bulanan Anda (Rp ${Math.round(sisaSaldoAkhir).toLocaleString('id-ID')}) saat ini berada di bawah batas target investasi aman (Rp ${Math.round(totalWajibDisimpan).toLocaleString('id-ID')}). Anda disarankan mengevaluasi pengeluaran pada sektor "${kategoriTerbesarNama}" agar target menyisihkan 15% Dana Darurat dan 10% Tabungan dari total gaji bulanan Anda dapat terpenuhi secara utuh tanpa mengganggu perputaran harian.`;
+            if (totalDanaDarurat >= alokasiDaruratIdeal) {
+                txtNoteDaruratBawah.innerHTML = `✨ <span style="color:#0d9488; font-weight:700;">Proteksi Terpenuhi:</span> Alokasi aman! Celengan Dana Darurat Anda telah mencapai target ideal bulan ini (Min. Rp ${Math.round(alokasiDaruratIdeal).toLocaleString('id-ID')}).`;
             } else {
-                document.getElementById('txt-kesimpulan-analisis').innerText = `Perhatian Sistem: Arus kas berjalan bernilai negatif/habis. Target menyisihkan 15% Dana Darurat dan 10% Tabungan tidak dapat dieksekusi. Segera lakukan pengetatan atau pemangkasan pengeluaran pada sektor "${kategoriTerbesarNama}" yang tercatat paling boros agar kondisi keuangan kembali sehat.`;
+                let sisaKurangDarurat = alokasiDaruratIdeal - totalDanaDarurat;
+                txtNoteDaruratBawah.innerHTML = `⚠️ <span style="color:#c2410c; font-weight:600;">Kurang Alokasi:</span> Butuh sekitar <b>Rp ${Math.round(sisaKurangDarurat).toLocaleString('id-ID')}</b> lagi untuk menyentuh target proteksi ideal bulan ini.`;
+            }
+
+            // FITUR BARU: Logika Menghitung Kalkulator ETA Prediksi Waktu Nyata
+            let jumlahBulanAktif = Object.keys(pencatatBulanTabungan).length || 1;
+            let rataRataNabungPerbulan = totalTabunganImpian / jumlahBulanAktif;
+
+            if (namaTarget !== "" && hargaTarget > 0) {
+                if (totalTabunganImpian >= hargaTarget) {
+                    txtNoteTabunganBawah.innerHTML = `🎉 <span style="color:#0d9488; font-weight:700;">Target Goal!:</span> Dana tabungan terkumpul penuh! Anda siap membeli <b>"${namaTarget}"</b> sekarang!`;
+                } else {
+                    let selisihHargaBarang = hargaTarget - totalTabunganImpian;
+                    let teksEta = "";
+                    
+                    if (rataRataNabungPerbulan > 0) {
+                        let hitungEtaBulan = Math.ceil(selisihHargaBarang / rataRataNabungPerbulan);
+                        teksEta = `<br>⏱️ <b>Prediksi ETA:</b> Dengan konsistensi nabungmu, <b>"${namaTarget}"</b> diprediksi lunas dalam <b>${hitungEtaBulan} bulan lagi</b>.`;
+                    } else {
+                        teksEta = `<br>⏱️ <b>Prediksi ETA:</b> Belum ada rata-rata simpanan bulanan terdeteksi.`;
+                    }
+
+                    txtNoteTabunganBawah.innerHTML = `🚀 <span style="color:#1e3a8a; font-weight:600;">Pelacakan Target:</span> Untuk memboyong <b>"${namaTarget}"</b>, tabungan permanen Anda masih membutuhkan sisa dana sebesar <b>Rp ${selisihHargaBarang.toLocaleString('id-ID')}</b> lagi.${teksEta}`;
+                }
+            } else {
+                txtNoteTabunganBawah.innerHTML = `💡 Tentukan nama barang impian dan harganya di bagian kolom atas untuk mengaktifkan pelacak data.`;
+            }
+
+            let teksKalkulatorTarget = "";
+            if(namaTarget !== "" && hargaTarget > 0) {
+                if(totalTabunganImpian >= hargaTarget) {
+                    teksKalkulatorTarget = `<br><br><b>🎯 Progress Target:</b> Selamat Gede Budi! Total tabungan di riwayat buku catatan Anda sudah terkumpul penuh untuk membeli <b>"${namaTarget}"</b> seharga Rp ${hargaTarget.toLocaleString('id-ID')}.`;
+                } else {
+                    let selisihTarget = hargaTarget - totalTabunganImpian;
+                    teksKalkulatorTarget = `<br><br><b>🎯 Progress Target:</b> Untuk bisa membeli <b>"${namaTarget}"</b>, simpanan riil Anda baru terisi Rp ${totalTabunganImpian.toLocaleString('id-ID')}. Anda masih memerlukan tabungan sebesar <b>Rp ${selisihTarget.toLocaleString('id-ID')}</b> lagi agar target tercapai.`;
+                }
+            }
+
+            if (sisaSaldoAkhir >= 0) {
+                panelRencana.className = "rencana-box";
+                kesimpulanBox.className = "kesimpulan-teks";
+                
+                lblDarurat.innerText = "Dana Darurat Ideal (15% Gaji)";
+                lblTabungan.innerText = "Tabungan Realistis (10% Gaji)";
+                valDarurat.innerText = 'Rp ' + Math.round(alokasiDaruratIdeal).toLocaleString('id-ID');
+                valTabungan.innerText = 'Rp ' + Math.round(alokasiTabunganIdeal).toLocaleString('id-ID');
+                valDarurat.style.color = "#c2410c";
+                valTabungan.style.color = "#047857";
+
+                let rasioPersen = (sisaSaldoAkhir / totalWajibDisimpan) * 100;
+                if (rasioPersen > 100) rasioPersen = 100;
+                pBar.style.width = rasioPersen + "%";
+                
+                let skorFinansial = "C";
+                let persentaseModal = (sisaSaldoAkhir / modalAwal) * 100;
+                if(persentaseModal >= 50) skorFinansial = "A (EXCELLENT)";
+                else if(persentaseModal >= 25) skorFinansial = "B (GOOD)";
+                else skorFinansial = "C (WARNING)";
+
+                titleRencana.innerText = `ℹ Analisis Proyeksi Keuangan (RAPOR SKOR KAS: SKOR ${skorFinansial})`;
+
+                if (listPengeluaran.length === 0) {
+                    pBar.style.backgroundColor = "#3498db";
+                    pText.innerText = "Status Kesehatan Kas: 100% (Siklus Baru Dimulai)";
+                    kesimpulanBox.innerHTML = `<b>💡 Panduan Alokasi Cerdas (Metode 50/30/20):</b><br>
+                    Uang awal Anda tercatat sebesar Rp ${modalAwal.toLocaleString('id-ID')}. Sistem menyarankan pembagian anggaran sebagai berikut:<br>
+                    • <b>Rp ${(modalAwal * 0.5).toLocaleString('id-ID')} (50%)</b> dialokasikan untuk kebutuhan pokok primer harian.<br>
+                    • <b>Rp ${(modalAwal * 0.3).toLocaleString('id-ID')} (30%)</b> dialokasikan untuk keinginan atau kebutuhan lainnya.<br>
+                    • <b>Rp ${(modalAwal * 0.2).toLocaleString('id-ID')} (20%)</b> dialokasikan wajib untuk disimpan ke dalam tabungan masa depan Anda.${teksKalkulatorTarget}`;
+                } else if (sisaSaldoAkhir >= totalWajibDisimpan) {
+                    pBar.style.backgroundColor = "#10b981";
+                    pText.innerText = "Status Kesehatan Kas: " + Math.round(rasioPersen) + "% (Target Tabungan Terpenuhi)";
+                    kesimpulanBox.innerHTML = `Analisis Hasil: Untuk mencapai total dana darurat sebesar 3 kali lipat pengeluaran, Anda secara umum perlu menyisihkan sekitar 10% hingga 20% (Sistem menetapkan angka ideal: 15%). Sisa saldo terkini Anda sangat mencukupi! Amankan Rp ${Math.round(alokasiDaruratIdeal).toLocaleString('id-ID')} ke akun Dana Darurat and Rp ${Math.round(alokasiTabunganIdeal).toLocaleString('id-ID')} ke akun Tabungan Anda bulan ini. Aktivitas pengeluaran tertinggi berada pada aktivitas "${kategoriTerbesarNama}".${teksKalkulatorTarget}`;
+                } else {
+                    pBar.style.backgroundColor = "#f59e0b";
+                    pText.innerText = "Status Kesehatan Kas: " + Math.round(rasioPersen) + "% (Dana Proteksi Menipis)";
+                    kesimpulanBox.innerHTML = `Analisis Hasil: Sisa uang bulanan Anda (Rp ${Math.round(sisaSaldoAkhir).toLocaleString('id-ID')}) saat ini berada di bawah batas target investasi aman (Rp ${Math.round(totalWajibDisimpan).toLocaleString('id-ID')}). Anda disarankan mengevaluasi pengeluaran pada sektor "${kategoriTerbesarNama}" agar target menyisihkan 15% Dana Darurat dan 10% Tabungan dari total gaji bulanan Anda dapat terpenuhi secara utuh tanpa mengganggu perputaran harian.${teksKalkulatorTarget}`;
+                }
+            } else {
+                panelRencana.className = "rencana-box box-tekor-aktif";
+                titleRencana.innerText = "⚠️ DETEKTOR KEBOCORAN KAS (RAPOR SKOR KAS: SKOR D - CRITICAL)";
+                kesimpulanBox.className = "kesimpulan-teks teks-tekor-aktif";
+
+                lblDarurat.innerText = "Total Kekurangan Dana (Defisit)";
+                lblTabungan.innerText = "Transaksi Penyebab Tekor";
+                
+                valDarurat.innerText = 'Rp ' + Math.abs(sisaSaldoAkhir).toLocaleString('id-ID');
+                valTabungan.innerText = namaTransaksiTerbesar;
+                
+                valDarurat.style.color = "#dc2626";
+                valTabungan.style.color = "#b91c1c";
+
+                pBar.style.width = "100%";
+                pBar.style.backgroundColor = "#ef4444";
+                pText.innerText = "Status Kesehatan Kas: CRITICAL INSUFFICIENT (0%)";
+
+                kesimpulanBox.innerHTML = `Laporan Investigasi Kebocoran: Dompet Anda saat ini tekor sebesar Rp ${Math.abs(sisaSaldoAkhir).toLocaleString('id-ID')}. Berdasarkan analisis data, transaksi "${namaTransaksiTerbesar}" pada kategori "${kategoriTerbesarNama}" dengan nilai Rp ${nominalTerbesar.toLocaleString('id-ID')} terdeteksi sebagai PENYEBAB UTAMA kas Anda mengalami minus. Segera batasi transaksi di sektor ini atau cari pemasukan tambahan untuk menutup defisit berjalan!${teksKalkulatorTarget}`;
             }
         } else {
+            pBar.style.width = "0%";
+            pText.innerText = "Status Kesehatan Kas: 0%";
             document.getElementById('txt-rencana-darurat').innerText = 'Rp 0';
             document.getElementById('txt-rencana-tabungan').innerText = 'Rp 0';
             document.getElementById('txt-kesimpulan-analisis').innerText = "Silakan tentukan alokasi parameter UANG AWAL untuk mengaktifkan sistem analisis manajemen keuangan harian.";
+            txtNoteDaruratBawah.innerText = "Menunggu data modal...";
+            txtNoteTabunganBawah.innerText = "Menunggu data target barang...";
         }
     }
 
-    function updateTabel() {
-        tableBody.innerHTML = '';
-        dataTransaksi.forEach((transaksi, index) => {
-            if (bukuAktif !== 'Semua' && transaksi.kategori !== bukuAktif) {
-                return;
-            }
+    // FITUR BARU: Logika Pemrosesan Filter Ganda (Kategori + Teks Keyword + Rentang Tanggal)
+    function jalankanFilterGanda() {
+        let keyword = document.getElementById('txt-cari').value.toLowerCase();
+        let tglMulai = document.getElementById('filter-date-mulai').value;
+        let tglAkhir = document.getElementById('filter-date-akhir').value;
 
+        tableBody.innerHTML = '';
+
+        dataTransaksi.forEach((transaksi, index) => {
+            // 1. Saringan Filter Tab Kategori
+            if (bukuAktif !== 'Semua' && transaksi.kategori !== bukuAktif) return;
+
+            // 2. Saringan Filter Keyword Keterangan
+            if (keyword !== "" && !transaksi.keterangan.toLowerCase().includes(keyword)) return;
+
+            // 3. Saringan Filter Rentang Tanggal
+            if (tglMulai !== "" && transaksi.tanggal < tglMulai) return;
+            if (tglAkhir !== "" && transaksi.tanggal > tglAkhir) return;
+
+            // Jika lulus semua saringan, buat baris barunya di tabel
             const row = document.createElement('tr');
-            const kelasWarna = transaksi.kategori === 'Pemasukan Tambahan' ? 'text-pemasukan' : 'text-pengeluaran';
+            let kelasWarna = 'text-pengeluaran';
+            
+            if (transaksi.kategori === 'Pemasukan Tambahan') {
+                kelasWarna = 'text-pemasukan';
+            } else if (transaksi.kategori === 'Dana Darurat' || transaksi.kategori === 'Tabungan Impian') {
+                kelasWarna = 'text-brankas-simpanan';
+            }
 
             row.innerHTML = `
                 <td>${formatTanggalIndo(transaksi.tanggal)}</td>
@@ -483,29 +912,35 @@
         });
     }
 
+    // Fungsi reset filter tanggal
+    function clearFilterTanggal() {
+        document.getElementById('filter-date-mulai').value = "";
+        document.getElementById('filter-date-akhir').value = "";
+        document.getElementById('txt-cari').value = "";
+        jalankanFilterGanda();
+    }
+
     function gantiBuku(kategoriBuku, tombolKlik) {
         bukuAktif = kategoriBuku;
         const semuaTombol = document.querySelectorAll('.btn-buku');
         semuaTombol.forEach(btn => {
             btn.classList.remove('aktif');
             btn.classList.remove('tab-pemasukan-aktif');
-            if(btn.id === 'tab-pemasukan') {
-                btn.style.borderBottom = "1px solid #e2e8f0";
-            }
+            btn.classList.remove('tab-brankas-aktif');
         });
 
         if (kategoriBuku === 'Pemasukan Tambahan') {
             tombolKlik.classList.add('tab-pemasukan-aktif');
-            tombolKlik.style.borderBottom = "none";
+        } else if (kategoriBuku === 'Dana Darurat' || kategoriBuku === 'Tabungan Impian') {
+            tombolKlik.classList.add('tab-brankas-aktif');
         } else {
             tombolKlik.classList.add('aktif');
-            document.getElementById('tab-pemasukan').style.borderBottom = "1px solid #e2e8f0";
         }
-        updateTabel();
+        jalankanFilterGanda(); // Jalankan penyaring terpadu
     }
 
     inputModalAwal.addEventListener('input', function() {
-        modalAwal = parseFloat(inputModalAwal.value) || 0;
+        modalAwal = dapatkanAngkaMurni(inputModalAwal.value);
         localStorage.setItem('modalAwal', modalAwal);
         hitungKeuangan();
     });
@@ -513,21 +948,26 @@
     function hapusTransaksi(index) {
         dataTransaksi.splice(index, 1);
         localStorage.setItem('catatanKeuangan', JSON.stringify(dataTransaksi));
-        updateTabel();
+        jalankanFilterGanda();
         hitungKeuangan();
     }
 
     function resetSiklusBulanan() {
-        const konfirmasi = confirm("Apakah Anda yakin ingin menghapus seluruh riwayat transaksi untuk membuka siklus baru?");
+        const konfirmasi = confirm("Apakah Anda yakin ingin membuka siklus bulan baru? (Seluruh riwayat jajan/pengeluaran akan dibersihkan, tetapi RIWAYAT CELENGAN TABUNGAN & DANA DARURAT Anda akan disimpan permanen)");
         if(konfirmasi) {
-            dataTransaksi = [];
+            dataTransaksi = dataTransaksi.filter(transaksi => 
+                transaksi.kategori === 'Dana Darurat' || transaksi.kategori === 'Tabungan Impian'
+            );
+            
+            localStorage.setItem('catatanKeuangan', JSON.stringify(dataTransaksi));
+            
             modalAwal = 0;
-            localStorage.removeItem('catatanKeuangan');
             localStorage.removeItem('modalAwal');
             inputModalAwal.value = '';
-            updateTabel();
+            
+            clearFilterTanggal();
             hitungKeuangan();
-            alert("Seluruh memori transaksi lama berhasil dibersihkan.");
+            alert("Siklus bulanan berhasil diperbarui! Sejarah tabungan jangka panjangmu berhasil dilindungi.");
         }
     }
 
@@ -537,12 +977,12 @@
         const tanggal = document.getElementById('txt-tanggal').value;
         const kategori = document.getElementById('sel-kategori').value;
         const keterangan = document.getElementById('txt-keterangan').value;
-        const jumlah = parseFloat(document.getElementById('num-jumlah').value);
+        const jumlah = dapatkanAngkaMurni(document.getElementById('num-jumlah').value);
 
         dataTransaksi.push({ tanggal, kategori, keterangan, jumlah });
         localStorage.setItem('catatanKeuangan', JSON.stringify(dataTransaksi));
 
-        updateTabel();
+        jalankanFilterGanda();
         hitungKeuangan();
 
         document.getElementById('txt-keterangan').value = '';
@@ -550,7 +990,7 @@
         document.getElementById('sel-kategori').value = '';
     });
 
-    updateTabel();
+    jalankanFilterGanda();
     hitungKeuangan();
 </script>
 
